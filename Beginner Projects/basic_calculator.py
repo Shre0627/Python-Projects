@@ -6,8 +6,8 @@
 # Creating do while loops for user input
 # asking for operation type 
 while True:
-    operationType = input("What is the operation you want to use? (ex: Addition, Subtraction, Multiplication, Division, Modulus): ")
-    if operationType.lower() == "addition" or operationType.lower() == "subtraction" or operationType.lower() == "multiplication" or operationType.lower() == "division" or operationType.lower() == "modulus":
+    operationType = input("What is the operation you want to use? (ex: Addition, Subtraction, Multiplication, or Division): ")
+    if operationType.lower() == "addition" or operationType.lower() == "subtraction" or operationType.lower() == "multiplication" or operationType.lower() == "division":
         break
     else:
         print("Invalid Answer!")
@@ -52,17 +52,5 @@ elif operationType.lower() == "division":
         if result == 1:
             result = numbers[0]
             continue
-elif  operationType.lower() == "modulus":
-    result = numbers[0]
-    counter = 0
-    for x in numbers:
-        # I still think there is an error here but I will come back to it
-        result %= x 
-        if result == 0 and counter < 1:
-            counter += 1
-            result = numbers[0]
-            continue
-        else:
-            break
 
 print("Answer: "+str(result))
