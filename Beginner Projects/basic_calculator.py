@@ -3,6 +3,32 @@
 # Creating a Basic Calculator using user input, loops, and if statements
 # Next Steps: Creating a Basic Calculator using Functions
 
+def calculation(numbers, operationType):
+    # Calculate values depending on the operation
+    if operationType.lower() == "addition":
+        result = 0
+        for x in numbers: #for loops for arrays - according to python tho this is not an array it is a list (numbers) but can be considered as an array
+            result += x
+    elif operationType.lower() == "multiplication":
+        result = 1
+        for x in numbers:
+            result *= x
+    elif operationType.lower() == "subtraction":
+        result = numbers[0]
+        for x in numbers:
+            result -= x
+            if result == 0:
+                result = numbers[0]
+                continue
+    elif operationType.lower() == "division":
+        result = numbers[0]
+        for x in numbers:
+            result /= x
+            if result == 1:
+                result = numbers[0]
+                continue
+    print("Answer: "+str(result))
+
 # Creating do while loops for user input
 # asking for operation type 
 while True:
@@ -29,28 +55,4 @@ while True:
         numbers.append(float(num3))
         continue
 
-# Calculate values depending on the operation
-if operationType.lower() == "addition":
-    result = 0
-    for x in numbers: #for loops for arrays - according to python tho this is not an array it is a list (numbers) but can be considered as an array
-        result += x
-elif operationType.lower() == "multiplication":
-    result = 1
-    for x in numbers:
-        result *= x
-elif operationType.lower() == "subtraction":
-    result = numbers[0]
-    for x in numbers:
-        result -= x
-        if result == 0:
-            result = numbers[0]
-            continue
-elif operationType.lower() == "division":
-    result = numbers[0]
-    for x in numbers:
-        result /= x
-        if result == 1:
-            result = numbers[0]
-            continue
-
-print("Answer: "+str(result))
+calculation(numbers, operationType)
