@@ -1,58 +1,51 @@
 # Shreya Jamnadas
 # September 8, 2024
-# Creating a Basic Calculator using user input, loops, and if statements
-# Next Steps: Creating a Basic Calculator using Functions
+# Creating a Basic Calculator using user input, loops, if statements, functions, and arrays - this calculator only calculates with a single operator
+# Next Steps: Program the calculator to use multiple operators
 
-def calculation(numbers, operationType):
-    # Calculate values depending on the operation
-    if operationType.lower() == "addition":
-        result = 0
-        for x in numbers: #for loops for arrays - according to python tho this is not an array it is a list (numbers) but can be considered as an array
-            result += x
-    elif operationType.lower() == "multiplication":
-        result = 1
-        for x in numbers:
-            result *= x
-    elif operationType.lower() == "subtraction":
-        result = numbers[0]
-        for x in numbers:
-            result -= x
-            if result == 0:
-                result = numbers[0]
+def calc(arr, type):
+    value = 0
+    if type == "+":
+        for x in arr:
+            value += x
+        return value
+    elif type == "-":
+        for x in arr:
+            firstEle = arr[0]
+            if x == firstEle:
+                value = x
                 continue
-    elif operationType.lower() == "division":
-        result = numbers[0]
-        for x in numbers:
-            result /= x
-            if result == 1:
-                result = numbers[0]
+            value -= x
+        return value
+    elif type == "*":
+        for x in arr:
+            value = 1
+            value *= x
+        return value
+    elif type == "/":
+        for x in arr:
+            firstEle = arr[0]
+            if x == firstEle:
+                value= x
                 continue
-    print("Answer: "+str(result))
+            value /= x
+        return value   
+    print("Result "+str(value))   
 
-# Creating do while loops for user input
-# asking for operation type 
+operationType = input("What operation would you like to use? Addition (+), Substraction (-), Multiplication (*), or Division (/) - use symbols: ")
 while True:
-    operationType = input("What is the operation you want to use? (ex: Addition, Subtraction, Multiplication, or Division): ")
-    if operationType.lower() == "addition" or operationType.lower() == "subtraction" or operationType.lower() == "multiplication" or operationType.lower() == "division":
+    if operationType == "+" or operationType == "-" or operationType == "*" or operationType == "/":
         break
     else:
-        print("Invalid Answer!")
-        continue
+        print("Invalid Answer")
+        operationType = input("What operation would you like to use? Addition (+), Substraction (-), Multiplication (*), or Division (/) - use symbols: ")
 
-#asking for numbers
-numbers = [] #creating an empty array/list
-num1 = input("Enter a number: ")
-num2 = input("Enter another number: ")
-#adding num1 and num2 into list numbers
-numbers.append(float(num1)) 
-numbers.append(float(num2))
-while True:
-    finish = input("Would you like to enter another number?: ")
-    if finish.lower() == "no":
-        break
-    elif finish.lower() == "yes":
-        num3 = input("Enter a number: ")
-        numbers.append(float(num3))
-        continue
+calcQ = input("Input the numbers in a list (with spaces in between each number): ")
+numbers = [] # creating an empty array list
 
-calculation(numbers, operationType)
+# for loop to iterate through each element in String
+for x in calcQ:
+    if isinstance(x, (int, float)): # checking if x is a number or not
+        numbers.append(float(x)) 
+
+calc(numbers, operationType)
