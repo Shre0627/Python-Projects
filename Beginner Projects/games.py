@@ -1,60 +1,68 @@
 # Shreya Jamnadas
 # December 26 2024
-# Creating a Password Validator Program, Palindrome Program, and Guess Number Game
-# Next Steps:
+# Creating a Password Validator Program using functions, if statements, loops, user input, and try and catch
+# Next Steps: Create a Palindrome Program and Guess Number Game 
 
-# Password Validator - Requirements: Password Legnth should be between 8-20
+# Password Validator
+# Requirements:
+# Password Length should be between 8-20 characters
 # password should contain a lowercase letter, upercase letter, digit, and special character
-# should not be a simple sequence and shouldn't include the username or part of the username, and no spaces
-"""
-Basic Requirements for the Password:
-Length:
-
-Minimum and maximum length (e.g., password should be at least 8 characters long and no more than 20 characters).
-Character Types:
-
-The password should contain at least one lowercase letter (a-z).
-The password should contain at least one uppercase letter (A-Z).
-The password should contain at least one numerical digit (0-9).
-The password should contain at least one special character (e.g., !, @, #, $, %, etc.).
-No Common Words or Sequences:
-
-The password should not be a simple sequence (e.g., 1234, abcd, password).
-The password should not include the username or parts of the user’s email address (optional for added security).
-No Spaces:
-
-Passwords should not contain spaces.
-"""
+# should not be a simple sequence and shouldn't include the username and no spaces
 
 # function for each checker
-
 def isDigitCheck(pw):
+    check = False
     for x in pw:
-        if isinstance(x, (int)):
-            return True
+      if x.isdigit():
+          check = True
+          break
+    return check
 
-def lettersCheckUpper(pw):
+def upperLetter(pw):
+    check = False
     for x in pw:
-        letter = x.isupper()
-        if letter:
-            return True
+        if x.isupper():
+            check = True
+            break
+    return check
 
-def lettersCheckLower(pw):
+def lowerLetter(pw):
+    check = False
     for x in pw:
-        letter = x.islower()
-        if letter:
-            return True
+        if x.islower():
+            check = True
+            break
+    return check
             
 def specialCharCheck(pw):
+    check = False
     for x in pw:
         if x == "@" or x == "$" or x == "#" or x == "!" or x == "%":
-            return True
+            check = True
+            break
+    return check
 
 username = input("Enter your username: ")
-password = input("Enter your password: ")
-
-if len(password) >= 8 and len(password) <= 20:
-    if isDigitCheck(password) and lettersCheckLower(password) and lettersCheckUpper(password) and specialCharCheck(password):
-
-
-
+while True:
+    password = input("Enter your password: ")
+    password = password.strip()
+    try:
+        searchSpace = password.find(" ")
+        assert searchSpace < 0, "Password contains whitespace"
+        assert len(password) >= 8, "Password length is too short"
+        assert len(password) <= 20, "Password length is too long"
+        assert isDigitCheck(password), "Password doesn't contain a digit"
+        assert lowerLetter(password), "Password doesn't contain a lower-case letter"
+        assert upperLetter(password), "Password doesn't contain a upper-case letter"
+        assert specialCharCheck(password), "Password doesn't contain a special character"
+        #check if username is not part of pw
+        searchUser = password.find(username) # search for the username in password
+        assert searchUser < 0, "Password contains username"
+        # search for simple sequences
+        search = password.find("assword")
+        assert search < 0, "Password shouldn't contain the word \"password\""
+        search = password.find("123")
+        assert search < 0, "Password shouldn't contain \"123\""
+        break
+    except AssertionError as e:
+        print(f"{e}. Try Again!")
