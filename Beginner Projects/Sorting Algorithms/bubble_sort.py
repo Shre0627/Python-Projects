@@ -1,6 +1,7 @@
 # Shreya Jamnadas
 # January 3, 2025
 # Coding the Bubble Sort Algorithm by Scratch using loops and nested loops, conditional statements, try and catch, and lists
+# Nest Steps: Implement Merge Sort Algorithm
 
 while True:
     values = input("Enter numbers seperated by a comma: ")

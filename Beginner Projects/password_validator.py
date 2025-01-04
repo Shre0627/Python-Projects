@@ -1,7 +1,6 @@
 # Shreya Jamnadas
 # December 26 2024
 # Creating a Password Validator Program using functions, if statements, loops, user input, and try and catch
-# Next Steps: Create a Palindrome Program and Guess Number Game 
 
 # Password Validator
 # Requirements:
